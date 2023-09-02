@@ -69,7 +69,8 @@ while cv.waitKey(1) < 0:
     if not hasFrame:
         cv.waitKey()
         break
-
+    frame = cv.resize(frame, (640, 480))
+  
     frameFace, bboxes = getFaceBox(faceNet, frame)
     if not bboxes:
         print("No face Detected, Checking next frame")
