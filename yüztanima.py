@@ -6,7 +6,8 @@ import argparse
 import smtplib
 from email.message import EmailMessage
 import imghdr
-  
+import RPi.GPIO as GPIO
+
 import time
 
 email_subject = "EVİNİZDE BİRİ ALGILANDI"
@@ -14,6 +15,15 @@ sender_email_address = "akantariktunahan@gmail.com"
 receiver_email_address = "akantariktunahan@gmail.com"
 email_smtp = "smtp.gmail.com"
 email_password = "ottvneegwkmzhpdu"
+
+GPIO.setmode(GPIO.BCM)
+BUZZER_PIN = 18
+GPIO.setup(BUZZER_PIN, GPIO.OUT)
+
+def buzzer_beep(duration=0.5):
+    GPIO.output(BUZZER_PIN, GPIO.HIGH)
+    time.sleep(duration)
+    GPIO.output(BUZZER_PIN, GPIO.LOW)
 
 def getFaceBox(net, frame, conf_threshold=0.7):
     frameOpencvDnn = frame.copy()
@@ -75,6 +85,7 @@ while cv.waitKey(1) < 0:
     if not bboxes:
         print("No face Detected, Checking next frame")
         continue
+    buzzer_beep()
 
     for bbox in bboxes:
         # print(bbox)
