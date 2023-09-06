@@ -17,7 +17,7 @@ email_smtp = "smtp.gmail.com"
 email_password = "ottvneegwkmzhpdu"
 
 GPIO.setmode(GPIO.BCM)
-BUZZER_PIN = 18
+BUZZER_PIN = 23
 GPIO.setup(BUZZER_PIN, GPIO.OUT)
 
 def buzzer_beep(duration=0.5):
@@ -113,7 +113,7 @@ while cv.waitKey(1) < 0:
                 # create an email message object
         message = EmailMessage()
 
-        with open('/home/tarikakan/Desktop/age-gender-detection/age-gender-out.jpg', 'rb') as file:
+        with open('/home/tarik/Desktop/age-gender-detection/age-gender-out.jpg', 'rb') as file:
             image_data = file.read()
         
         message.set_content("Evinizde Beklenmedik Misafirler Olabilir !!!!")
